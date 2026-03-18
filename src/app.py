@@ -27,6 +27,42 @@ activities = {
       "max_participants": 12,
       "participants": ["michael@mergington.edu", "daniel@mergington.edu"]
    },
+   "Basquetebol": {
+      "description": "Treinamento e competição de basquetebol",
+      "schedule": "Terças e quintas, 16h30 - 18h",
+      "max_participants": 15,
+      "participants": ["lucas@mergington.edu"]
+      },
+   "Voleibol": {
+      "description": "Treinamento técnico e jogos amistosos de voleibol",
+      "schedule": "Segundas e quartas, 16h - 17h30",
+      "max_participants": 18,
+      "participants": ["ana@mergington.edu", "bruno@mergington.edu"]
+      },
+   "Clube de Teatro": {
+      "description": "Desenvolvimento de habilidades teatrais e apresentações",
+      "schedule": "Quartas, 14h30 - 16h",
+      "max_participants": 25,
+      "participants": ["julia@mergington.edu"]
+      },
+   "Aula de Dança": {
+      "description": "Aprenda diferentes estilos de dança",
+      "schedule": "Sextas, 16h - 17h",
+      "max_participants": 20,
+      "participants": ["maria@mergington.edu", "carlos@mergington.edu"]
+      },
+   "Clube de Debate": {
+      "description": "Desenvolva habilidades de argumentação e pensamento crítico",
+      "schedule": "Terças, 15h - 16h30",
+      "max_participants": 16,
+      "participants": ["pedro@mergington.edu"]
+      },
+   "Clube de Robótica": {
+      "description": "Construa e programe robôs para competições",
+      "schedule": "Quartas e sextas, 15h - 16h30",
+      "max_participants": 14,
+      "participants": ["antonio@mergington.edu", "patricia@mergington.edu"]
+      },
    "Aula de Programação": {
       "description": "Aprenda fundamentos de programação e desenvolva projetos de software",
       "schedule": "Terças e quintas, 15h30 - 16h30",
@@ -61,6 +97,10 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specificy activity
     activity = activities[activity_name]
+
+   # Validar se o estudante já está inscrito
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Estudante já está inscrito na atividade")
 
     # Add student
     activity["participants"].append(email)
